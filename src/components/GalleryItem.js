@@ -1,4 +1,3 @@
-// Gallerysong.js
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -11,7 +10,7 @@ function GalleryItem(props) {
         'border': '1px solid black',
         'margin': '2px'
     }
-    
+
     const detailStyle = {
         'width': '80vw',
         'height': '20vh',
@@ -35,7 +34,7 @@ function GalleryItem(props) {
 
     const detailView = () => {
         return (
-            <div>
+            <div style={detailStyle}>
                 <h2>"{props.song.trackName}"</h2>
                 <h3>
                     <Link to={`/artist/${props.song.artistId}`}>
@@ -53,8 +52,8 @@ function GalleryItem(props) {
 
     return (
         <div onClick={() => setView(!view)}
-        style={{'display': 'inline-block'}}>
-        
+            style={{ 'display': 'inline-block' }}>
+
             {view ? detailView() : simpleView()}
 
         </div>

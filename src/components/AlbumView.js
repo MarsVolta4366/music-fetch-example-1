@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 const AlbumView = () => {
     const { id } = useParams()
-    const [ albumData, setAlbumData ] = useState([])
+    const [albumData, setAlbumData] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {

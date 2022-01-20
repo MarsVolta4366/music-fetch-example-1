@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 
 function ArtistView() {
-    const {id} = useParams()
-    const [ artistData, setArtistData ] = useState([])
+    const { id } = useParams()
+    const [artistData, setArtistData] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
