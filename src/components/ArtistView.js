@@ -1,4 +1,3 @@
-// ON PART 7, remember to start proxy server
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 
