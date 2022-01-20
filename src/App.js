@@ -1,7 +1,10 @@
 import './App.css';
 import { useEffect, useState } from 'react'
 import Gallery from './components/Gallery'
-import Searchbar from './components/Searchbar'
+import SearchBar from './components/SearchBar'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import ArtistView from './components/ArtistView'
+import AlbumView from './components/AlbumView'
 
 function App() {
   let [searchTerm, setSearchTerm] = useState('')
@@ -12,18 +15,18 @@ function App() {
 
   useEffect(() => {
     if (searchTerm) {
-      document.title=`${searchTerm} Music`
+      document.title = `${searchTerm} Music`
       const fetchData = async () => {
         const response = await fetch(API_URL + searchTerm)
         const resData = await response.json()
-        if(resData.results.length > 0) {
+        if (resData.results.length > 0) {
           setData(resData.results)
         } else {
           setMessage('Not Found')
         }
       }
       fetchData()
-  }
+    }
   }, [searchTerm])
 
   const handleSearch = (e, term) => {
@@ -31,13 +34,23 @@ function App() {
     setSearchTerm(term)
   }
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <div className="App">
-      <Searchbar handleSearch={handleSearch} />
       {message}
-      <Gallery data={data} />
+      <Router>
+        <Routes>
+          <Route path="/" element={
+            <div>
+              <SearchBar handleSearch={handleSearch} />
+              <Gallery data={data} />
+            </div>
+          } />
+          <Route path="/album/:id" element={<AlbumView />} />
+          <Route path="/artist/:id" element={<ArtistView />} /> 
+        </Routes>
+      </Router>
     </div>
   );
 }
